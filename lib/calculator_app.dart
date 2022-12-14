@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import 'calculator_page.dart';
+import 'pages/calculator_page.dart';
 
 class CalculatorApp extends StatelessWidget {
   const CalculatorApp({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class CalculatorApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            brightness: Brightness.dark,
+            primarySwatch: Colors.grey,
           ),
           home: const CalculatorPage(),
         );

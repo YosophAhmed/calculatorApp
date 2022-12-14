@@ -6,10 +6,12 @@ class CalculatorButton extends StatelessWidget {
   final Color? textColor;
   final double? textSize;
   final bool isPill;
+  final Function() onTap;
 
   const CalculatorButton({
     Key? key,
     required this.text,
+    required this.onTap,
     this.textColor,
     this.textSize,
     this.isPill = false,
@@ -26,7 +28,7 @@ class CalculatorButton extends StatelessWidget {
       height: buttonSize.height,
       width: buttonSize.width,
       child: GestureDetector(
-        onTap: () {},
+        onTap: onTap,
         child: Stack(
           children: [
             Container(
@@ -54,8 +56,8 @@ class CalculatorButton extends StatelessWidget {
                 text,
                 style: GoogleFonts.montserrat(
                   fontSize: textSize ?? 30,
-                  fontWeight: FontWeight.bold,
-                  color: textColor ?? Colors.white,
+                  fontWeight: FontWeight.w300,
+                  color: textColor ?? Colors.black,
                 ),
               ),
             ),

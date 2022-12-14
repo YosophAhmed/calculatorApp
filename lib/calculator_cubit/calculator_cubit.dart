@@ -5,4 +5,6 @@ import 'calculator_states.dart';
 class CalculatorCubit extends Cubit<CalculatorState> {
   CalculatorCubit() : super(InitialCalculatorState());
 
+  String userInput = '';
+  String answer = '';
 }
