@@ -12,161 +12,227 @@ class CalculatorPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 2.w,
-        vertical: 2.h,
-      ),
-      child: Column(
-        children: [
-          BlocBuilder<CalculatorCubit, CalculatorState>(
-            builder: (context, state) {
-              var cubit = BlocProvider.of<CalculatorCubit>(context);
-              return SizedBox(
+    return BlocBuilder<CalculatorCubit, CalculatorState>(
+      builder: (context, state) {
+        var cubit = BlocProvider.of<CalculatorCubit>(context);
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 2.w,
+            vertical: 2.h,
+          ),
+          child: Column(
+            children: [
+              SizedBox(
                 width: double.infinity,
                 height: 35.h,
                 child: SingleChildScrollView(
                   child: Text(
-                    cubit.userInput,
+                    cubit.userInput.isEmpty
+                        ? ''
+                        : '${cubit.userInput} = ${cubit.answer}',
                     style: GoogleFonts.montserrat(
                       fontSize: 100,
                       fontWeight: FontWeight.w200,
                     ),
                   ),
                 ),
-              );
-            },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CalculatorButton(
+                      text: 'AC',
+                      onTap: () {
+                        cubit.clear();
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '+/-',
+                      onTap: () {
+                        cubit.delete();
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '%',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '%',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '/',
+                      textColor: Colors.orange,
+                      textSize: 45,
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '/',
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CalculatorButton(
+                      text: '7',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '7',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '8',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '8',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '9',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '9',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: 'x',
+                      textColor: Colors.orange,
+                      textSize: 45,
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '*',
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CalculatorButton(
+                      text: '4',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '4',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '5',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '5',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '6',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '6',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '-',
+                      textColor: Colors.orange,
+                      textSize: 45,
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '-',
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CalculatorButton(
+                      text: '1',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '1',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '2',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '2',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '3',
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '3',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '+',
+                      textColor: Colors.orange,
+                      textSize: 45,
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '+',
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CalculatorButton(
+                      text: '0',
+                      isPill: true,
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '0',
+                        );
+                      },
+                    ),
+                    CalculatorButton(
+                      text: '.',
+                      textSize: 40,
+                      onTap: () {},
+                    ),
+                    CalculatorButton(
+                      text: '=',
+                      textColor: Colors.orange,
+                      textSize: 45,
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CalculatorButton(
-                  text: 'AC',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '+/-',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '%',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '÷',
-                  textColor: Colors.orange,
-                  textSize: 45,
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CalculatorButton(
-                  text: '7',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '8',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '9',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: 'x',
-                  textColor: Colors.orange,
-                  textSize: 45,
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CalculatorButton(
-                  text: '4',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '5',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '6',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '-',
-                  textColor: Colors.orange,
-                  textSize: 45,
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CalculatorButton(
-                  text: '1',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '2',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '3',
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '+',
-                  textColor: Colors.orange,
-                  textSize: 45,
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CalculatorButton(
-                  text: '0',
-                  isPill: true,
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '.',
-                  textSize: 40,
-                  onTap: () {},
-                ),
-                CalculatorButton(
-                  text: '=',
-                  textColor: Colors.orange,
-                  textSize: 45,
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
