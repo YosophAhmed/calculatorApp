@@ -27,8 +27,9 @@ class CalculatorPageBody extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 2.w,),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 35.h,
+                  height: 40.h,
                   child: SingleChildScrollView(
+                    reverse: true,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
