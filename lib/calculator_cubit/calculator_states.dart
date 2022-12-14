@@ -7,3 +7,5 @@ class SymbolCalculatorState extends CalculatorState {}
 class ClearCalculatorState extends CalculatorState {}
 
 class DeleteCalculatorState extends CalculatorState {}
+
+class ResultCalculatorState extends CalculatorState {}

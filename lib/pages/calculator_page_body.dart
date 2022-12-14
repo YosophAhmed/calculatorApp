@@ -16,23 +16,38 @@ class CalculatorPageBody extends StatelessWidget {
       builder: (context, state) {
         var cubit = BlocProvider.of<CalculatorCubit>(context);
         return Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 2.w,
-            vertical: 2.h,
+          padding: EdgeInsets.only(
+            top: 4.h,
+            left: 1.w,
+            right: 1.w,
           ),
           child: Column(
             children: [
-              SizedBox(
-                width: double.infinity,
-                height: 35.h,
-                child: SingleChildScrollView(
-                  child: Text(
-                    cubit.userInput.isEmpty
-                        ? ''
-                        : '${cubit.userInput} = ${cubit.answer}',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 100,
-                      fontWeight: FontWeight.w200,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 2.w,),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 35.h,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          cubit.userInput,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 50.sp,
+                            fontWeight: FontWeight.w200,
+                          ),
+                        ),
+                        Text(
+                          cubit.answer.isEmpty ? '' : ' = ${cubit.answer}',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 60.sp,
+                            fontWeight: FontWeight.w200,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -218,13 +233,19 @@ class CalculatorPageBody extends StatelessWidget {
                     CalculatorButton(
                       text: '.',
                       textSize: 40,
-                      onTap: () {},
+                      onTap: () {
+                        cubit.symbol(
+                          symbol: '.',
+                        );
+                      },
                     ),
                     CalculatorButton(
                       text: '=',
                       textColor: Colors.orange,
                       textSize: 45,
-                      onTap: () {},
+                      onTap: () {
+                        cubit.calculate();
+                      },
                     ),
                   ],
                 ),
